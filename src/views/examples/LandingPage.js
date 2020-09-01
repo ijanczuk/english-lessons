@@ -33,6 +33,8 @@ import {
   Container,
   Row,
   Col,
+  Spinner,
+  Alert,
 } from "reactstrap";
 
 // core components
@@ -41,6 +43,13 @@ import LandingPageHeader from "components/Headers/LandingPageHeader.js";
 import DemoFooter from "components/Footers/DemoFooter.js";
 
 function LandingPage() {
+  const [formStatus, setFormStatus] = React.useState('open'); // open, submitting, error
+  const [form, setForm] = React.useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [formMessage, setFormMessage] = React.useState(undefined);
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
     document.body.classList.add("profile-page");
@@ -48,6 +57,41 @@ function LandingPage() {
       document.body.classList.remove("profile-page");
     };
   });
+
+  const handleSendMessage = () => {
+    let url = `https://scripts.google.com/macros/s/AKfycbzHQ_wMRnz4SBM6n-Wz0KLjkXlLIuW5rt2Jl12zJdlPThdAzjjg/exec?name=${
+      encodeURIComponent(form.name)
+    }&email=${
+      encodeURIComponent(form.email)
+    }&message=${
+      encodeURIComponent(form.message)
+    }&time=${
+      encodeURIComponent(new Date())
+    }`;
+    setFormStatus('submitting');
+    window.fetch(url, { method: 'POST' }).then(response => {
+      console.log('SUCCESS', response.status, response.ok);
+      setFormStatus('open');
+      if (response.ok) {
+        setForm({
+          name: '',
+          email: '',
+          message: ''
+        });
+        setFormMessage({ error: false, message: 'Thank you for your interest. I will get back to you within 24h.'});
+      }
+      else {
+        setFormMessage({ error: true, message: 'Oops! There was a problem saving your infromation. Please try again or send me an e-mail at iza@janczuk.org.'});
+      }
+    }, error => {
+      console.log('ERROR', error);
+      setFormStatus('open');
+      setFormMessage({ error: true, message: 'Oops! There was a problem saving your infromation. Please try again or send me an e-mail at iza@janczuk.org.'});
+    });
+  };
+
+  const formValid = form.name && form.email && form.message;
+
   return (
     <>
       <ExamplesNavbar />
@@ -57,15 +101,13 @@ function LandingPage() {
           <Container>
             <Row>
               <Col className="ml-auto mr-auto" md="8">
-                <h2 className="title">Let's talk product</h2>
+                <h2 className="title">English conversations and tutoring</h2>
                 <h5 className="description">
-                  This is the paragraph where you can write more details about
-                  your product. Keep you user engaged by providing meaningful
-                  information. Remember that by this time, the user is curious,
-                  otherwise he wouldn't scroll to get here. Add a button if you
-                  want the user to see more.
+                  Need help with revising an essay, practicing asking and answering questions, writing letters, 
+                  correct grammar use, reading and analyzing an article, or just having a back and forth conversation? 
+                  I am here to help. 
                 </h5>
-                <br />
+                {/* <br />
                 <Button
                   className="btn-round"
                   color="info"
@@ -73,7 +115,7 @@ function LandingPage() {
                   onClick={(e) => e.preventDefault()}
                 >
                   See Details
-                </Button>
+                </Button> */}
               </Col>
             </Row>
             <br />
@@ -82,68 +124,71 @@ function LandingPage() {
               <Col md="3">
                 <div className="info">
                   <div className="icon icon-info">
-                    <i className="nc-icon nc-album-2" />
-                  </div>
-                  <div className="description">
-                    <h4 className="info-title">Beautiful Gallery</h4>
-                    <p className="description">
-                      Spend your time generating new ideas. You don't have to
-                      think of implementing.
-                    </p>
-                    <Button className="btn-link" color="info" href="#pablo">
-                      See more
-                    </Button>
-                  </div>
-                </div>
-              </Col>
-              <Col md="3">
-                <div className="info">
-                  <div className="icon icon-info">
                     <i className="nc-icon nc-bulb-63" />
                   </div>
                   <div className="description">
-                    <h4 className="info-title">New Ideas</h4>
-                    <p>
-                      Larger, yet dramatically thinner. More powerful, but
-                      remarkably power efficient.
+                    <h4 className="info-title">Experience</h4>
+                    <p className="description">
+                      I was born and live in Seattle, Washington in the USA. I am a native speaker in both English and Polish. 
+                      I am currently attending high school and am interested in humanities, 
+                      having always taken advanced English classes. 
                     </p>
-                    <Button className="btn-link" color="info" href="#pablo">
+                    {/* <Button className="btn-link" color="info" href="#pablo">
                       See more
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </Col>
               <Col md="3">
                 <div className="info">
                   <div className="icon icon-info">
-                    <i className="nc-icon nc-chart-bar-32" />
+                    <i className="nc-icon nc-single-copy-04" />
                   </div>
                   <div className="description">
-                    <h4 className="info-title">Statistics</h4>
+                    <h4 className="info-title">Content</h4>
                     <p>
-                      Choose from a veriety of many colors resembling sugar
-                      paper pastels.
+                    You are in control of what we cover during our meetings, but I can also suggest conversation 
+                    starters or prepare study guides. I can help you with homework, essay revisions, studying 
+                    for an exam, or just practicing your conversational skills.
                     </p>
-                    <Button className="btn-link" color="info" href="#pablo">
+                    {/* <Button className="btn-link" color="info" href="#pablo">
                       See more
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </Col>
               <Col md="3">
                 <div className="info">
                   <div className="icon icon-info">
-                    <i className="nc-icon nc-sun-fog-29" />
+                    <i className="nc-icon nc-watch-time" />
                   </div>
                   <div className="description">
-                    <h4 className="info-title">Delightful design</h4>
+                    <h4 className="info-title">Schedule</h4>
                     <p>
-                      Find unique and handmade delightful designs related items
-                      directly from our sellers.
+                      We can schedule an online meeting from Monday through Friday between 16:00 
+                      and 19:00 (Polish time). Each meeting lasts one hour or longer.
                     </p>
-                    <Button className="btn-link" color="info" href="#pablo">
+                    {/* <Button className="btn-link" color="info" href="#pablo">
                       See more
-                    </Button>
+                    </Button> */}
+                  </div>
+                </div>
+              </Col>
+              <Col md="3">
+                <div className="info">
+                  <div className="icon icon-info">
+                    <i className="nc-icon nc-credit-card" />
+                  </div>
+                  <div className="description">
+                    <h4 className="info-title">Pricing</h4>
+                    <p>
+                      I charge $14/hour. You can pay after the meeting using Paypal. 
+                      The first meeting is free so that we can get to know each other and assess fit! 
+                      . 
+                    </p>
+                    {/* <Button className="btn-link" color="info" href="#pablo">
+                      See more
+                    </Button> */}
                   </div>
                 </div>
               </Col>
@@ -152,9 +197,9 @@ function LandingPage() {
         </div>
         <div className="section section-dark text-center">
           <Container>
-            <h2 className="title">Let's talk about us</h2>
+            <h2 className="title">About me</h2>
             <Row>
-              <Col md="4">
+              {/* <Col md="4">
                 <Card className="card-profile card-plain">
                   <div className="card-avatar">
                     <a href="#pablo" onClick={(e) => e.preventDefault()}>
@@ -204,8 +249,8 @@ function LandingPage() {
                     </Button>
                   </CardFooter>
                 </Card>
-              </Col>
-              <Col md="4">
+              </Col> */}
+              <Col md={{ size: 6, offset: 3 }}>
                 <Card className="card-profile card-plain">
                   <div className="card-avatar">
                     <a href="#pablo" onClick={(e) => e.preventDefault()}>
@@ -218,46 +263,48 @@ function LandingPage() {
                   <CardBody>
                     <a href="#pablo" onClick={(e) => e.preventDefault()}>
                       <div className="author">
-                        <CardTitle tag="h4">Sophie West</CardTitle>
-                        <h6 className="card-category">Designer</h6>
+                        <CardTitle tag="h4">Iza Jańczuk</CardTitle>
+                        {/* <h6 className="card-category">Designer</h6> */}
                       </div>
                     </a>
                     <p className="card-description text-center">
-                      A group becomes a team when each member is sure enough of
-                      himself and his contribution to praise the skill of the
-                      others. No one can whistle a symphony. It takes an
-                      orchestra to play it.
+                      Hello, My name is Iza Jańczuk and I am 16 years old. 
+                      I was born and live in the United States, however, my parents are Polish. 
+                      I go back to Poland every summer to visit family and friends. 
+                      I am a native speaker in English and Polish. I am advanced in English, having taken higher placement 
+                      classes in both high school and middle school. Regarding my interests, 
+                      I like to work with cameras, hang out with friends, learn other languages, spend time in the outdoors, and travel.
                     </p>
                   </CardBody>
                   <CardFooter className="text-center">
-                    <Button
+                    {/* <Button
                       className="btn-just-icon btn-neutral"
                       color="link"
                       href="#pablo"
                       onClick={(e) => e.preventDefault()}
                     >
                       <i className="fa fa-twitter" />
-                    </Button>
+                    </Button> */}
                     <Button
                       className="btn-just-icon btn-neutral ml-1"
                       color="link"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      href="https://vsco.co/iza-janczuk "
+                      // onClick={(e) => e.preventDefault()}
                     >
-                      <i className="fa fa-google-plus" />
+                      <i className="fa fa-camera" />
                     </Button>
                     <Button
                       className="btn-just-icon btn-neutral ml-1"
                       color="link"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
+                      href="https://www.linkedin.com/in/izabela-janczuk/"
+                      // onClick={(e) => e.preventDefault()}
                     >
                       <i className="fa fa-linkedin" />
                     </Button>
                   </CardFooter>
                 </Card>
               </Col>
-              <Col md="4">
+              {/* <Col md="4">
                 <Card className="card-profile card-plain">
                   <div className="card-avatar">
                     <a href="#pablo" onClick={(e) => e.preventDefault()}>
@@ -308,17 +355,26 @@ function LandingPage() {
                     </Button>
                   </CardFooter>
                 </Card>
-              </Col>
+              </Col> */}
             </Row>
           </Container>
         </div>
+        <a id="contact">&nbsp;</a>
         <div className="section landing-section">
           <Container>
             <Row>
               <Col className="ml-auto mr-auto" md="8">
-                <h2 className="text-center">Keep in touch?</h2>
+                <h2 className="text-center">Get in touch?</h2>
+                <h5 class="text-center">
+                  Email me at <a href="mailto:iza@janczuk.org">iza@janczuk.org</a> or fill out the form
+                </h5>
                 <Form className="contact-form">
                   <Row>
+                    {formMessage && (
+                      <Col className="ml-auto mr-auto" md="12">
+                        <Alert color={formMessage.error ? 'danger' : 'success'}>{formMessage.message}</Alert>
+                      </Col>
+                    )}
                     <Col md="6">
                       <label>Name</label>
                       <InputGroup>
@@ -327,7 +383,7 @@ function LandingPage() {
                             <i className="nc-icon nc-single-02" />
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input placeholder="Name" type="text" />
+                        <Input disabled={formStatus === 'submitting'} placeholder="Name" type="text" value={form.name} onChange={(v) => setForm({ ...form, name: v.target.value})} />
                       </InputGroup>
                     </Col>
                     <Col md="6">
@@ -338,21 +394,31 @@ function LandingPage() {
                             <i className="nc-icon nc-email-85" />
                           </InputGroupText>
                         </InputGroupAddon>
-                        <Input placeholder="Email" type="text" />
+                        <Input disabled={formStatus === 'submitting'} placeholder="Email" type="text" value={form.email} onChange={(v) => setForm({ ...form, email: v.target.value})} />
                       </InputGroup>
                     </Col>
                   </Row>
                   <label>Message</label>
                   <Input
-                    placeholder="Tell us your thoughts and feelings..."
+                    placeholder="Tell me what you are interested in..."
+                    disabled={formStatus === 'submitting'} 
                     type="textarea"
                     rows="4"
+                    value={form.message}
+                    onChange={(v) => setForm({ ...form, message: v.target.value})}
                   />
                   <Row>
-                    <Col className="ml-auto mr-auto" md="4">
-                      <Button className="btn-fill" color="danger" size="lg">
-                        Send Message
-                      </Button>
+                    <Col className="ml-auto mr-auto text-center" md="5">
+                      {formStatus === 'submitting' && (
+                        <Button disabled={true} className="btn-round" color="danger" type="button" size="lg">
+                          <Spinner color="primary" size="sm"></Spinner> Send Message
+                        </Button>
+                      )}
+                      {formStatus !== 'submitting' && (
+                        <Button disabled={!formValid} className="btn-round" color="danger" type="button" size="lg" onClick={handleSendMessage}>
+                          Send Message
+                        </Button>
+                      )}
                     </Col>
                   </Row>
                 </Form>

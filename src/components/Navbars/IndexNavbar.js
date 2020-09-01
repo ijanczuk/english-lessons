@@ -64,7 +64,7 @@ function IndexNavbar() {
   return (
     <Navbar className={classnames("fixed-top", navbarColor)} expand="lg">
       <Container>
-        <div className="navbar-translate">
+        {/* <div className="navbar-translate">
           <NavbarBrand
             data-placement="bottom"
             href="/index"
@@ -84,7 +84,7 @@ function IndexNavbar() {
             <span className="navbar-toggler-bar bar2" />
             <span className="navbar-toggler-bar bar3" />
           </button>
-        </div>
+        </div> */}
         <Collapse
           className="justify-content-end"
           navbar

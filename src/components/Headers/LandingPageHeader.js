@@ -54,10 +54,10 @@ function LandingPageHeader() {
         <div className="filter" />
         <Container>
           <div className="motto text-center">
-            <h1>Example page</h1>
-            <h3>Start designing your landing page here.</h3>
+            <h1>Konwersacje po angielsku</h1>
+            <h3>Native speaker języka angielskiego i polskiego.<br></br>Konwersacje i korepetycje online dla licealistów i studentów.<br></br>$14/godzinę, pierwsze spotkanie za darmo.</h3>
             <br />
-            <Button
+            {/* <Button
               href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
               className="btn-round mr-1"
               color="neutral"
@@ -66,9 +66,9 @@ function LandingPageHeader() {
             >
               <i className="fa fa-play" />
               Watch video
-            </Button>
-            <Button className="btn-round" color="neutral" type="button" outline>
-              Download
+            </Button> */}
+            <Button className="btn-round" color="neutral" type="button" outline href="#contact">
+              Kontakt
             </Button>
           </div>
         </Container>

@@ -72,12 +72,12 @@ function ExamplesNavbar() {
         <div className="navbar-translate">
           <NavbarBrand
             data-placement="bottom"
-            to="/index"
+            to="/"
             target="_blank"
             title="Coded by Creative Tim"
             tag={Link}
           >
-            Paper Kit 2
+            Iza Jańczuk
           </NavbarBrand>
           <button
             aria-expanded={navbarCollapse}
@@ -97,7 +97,7 @@ function ExamplesNavbar() {
           isOpen={navbarCollapse}
         >
           <Nav navbar>
-            <NavItem>
+            {/* <NavItem>
               <NavLink to="/index" tag={Link}>
                 <i className="nc-icon nc-layout-11" /> Components
               </NavLink>
@@ -109,41 +109,41 @@ function ExamplesNavbar() {
               >
                 <i className="nc-icon nc-book-bookmark" /> Documentation
               </NavLink>
-            </NavItem>
+            </NavItem> */}
             <NavItem>
               <NavLink
                 data-placement="bottom"
-                href="https://twitter.com/CreativeTim?ref=creativetim"
+                href="https://vsco.co/iza-janczuk"
                 target="_blank"
-                title="Follow us on Twitter"
+                title="See VSCO Gallery"
               >
-                <i className="fa fa-twitter" />
-                <p className="d-lg-none">Twitter</p>
+                <i className="fa fa-camera" />
+                <p className="d-lg-none">VSCO</p>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
                 data-placement="bottom"
-                href="https://www.facebook.com/CreativeTim?ref=creativetim"
+                href="https://www.linkedin.com/in/izabela-janczuk/"
                 target="_blank"
-                title="Like us on Facebook"
+                title="Connect on LinkedIn"
               >
-                <i className="fa fa-facebook-square" />
-                <p className="d-lg-none">Facebook</p>
+                <i className="fa fa-linkedin" />
+                <p className="d-lg-none">LinkedIn</p>
               </NavLink>
             </NavItem>
             <NavItem>
               <NavLink
                 data-placement="bottom"
-                href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
+                href="mailto:iza@janczuk.org"
                 target="_blank"
-                title="Follow us on Instagram"
+                title="Contact at iza@janczuk.org"
               >
-                <i className="fa fa-instagram" />
-                <p className="d-lg-none">Instagram</p>
+                <i className="fa fa-envelope" />
+                <p className="d-lg-none">Send e-mail</p>
               </NavLink>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <NavLink
                 data-placement="bottom"
                 href="https://www.github.com/CreativeTimOfficial?ref=creativetim"
@@ -153,7 +153,7 @@ function ExamplesNavbar() {
                 <i className="fa fa-github" />
                 <p className="d-lg-none">GitHub</p>
               </NavLink>
-            </NavItem>
+            </NavItem> */}
           </Nav>
         </Collapse>
       </Container>
