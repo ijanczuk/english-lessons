@@ -59,7 +59,7 @@ function LandingPage() {
   });
 
   const handleSendMessage = () => {
-    let url = `https://scripts.google.com/macros/s/AKfycbzHQ_wMRnz4SBM6n-Wz0KLjkXlLIuW5rt2Jl12zJdlPThdAzjjg/exec?name=${
+    let url = `https://script.google.com/macros/s/AKfycbzHQ_wMRnz4SBM6n-Wz0KLjkXlLIuW5rt2Jl12zJdlPThdAzjjg/exec?name=${
       encodeURIComponent(form.name)
     }&email=${
       encodeURIComponent(form.email)
@@ -183,8 +183,7 @@ function LandingPage() {
                     <h4 className="info-title">Pricing</h4>
                     <p>
                       I charge $14/hour. You can pay after the meeting using Paypal. 
-                      The first meeting is free so that we can get to know each other and assess fit! 
-                      . 
+                      The first meeting is free so that we can get to know each other and assess fit!
                     </p>
                     {/* <Button className="btn-link" color="info" href="#pablo">
                       See more
@@ -256,7 +255,7 @@ function LandingPage() {
                     <a href="#pablo" onClick={(e) => e.preventDefault()}>
                       <img
                         alt="..."
-                        src={require("assets/img/faces/joe-gardner-2.jpg")}
+                        src={require("assets/img/iza.jpg")}
                       />
                     </a>
                   </div>
