@@ -182,7 +182,7 @@ function LandingPage() {
                   <div className="description">
                     <h4 className="info-title">Pricing</h4>
                     <p>
-                      I charge $14/hour. You can pay after the meeting using Paypal. 
+                      I charge 50zł/hour.  
                       The first meeting is free so that we can get to know each other and assess fit!
                     </p>
                     {/* <Button className="btn-link" color="info" href="#pablo">

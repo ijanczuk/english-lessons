@@ -56,7 +56,7 @@ function LandingPageHeader() {
         <Container>
           <div className="motto text-center">
             <h1>Konwersacje po angielsku</h1>
-            <h3>Native speaker języka angielskiego i polskiego.<br></br>Konwersacje i korepetycje online dla licealistów i studentów.<br></br>$14/godzinę, pierwsze spotkanie za darmo.</h3>
+            <h3>Native speaker języka angielskiego i polskiego.<br></br>Konwersacje i korepetycje online dla licealistów i studentów.<br></br>50zł/godzinę, pierwsze spotkanie za darmo.</h3>
             <br />
             {/* <Button
               href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
